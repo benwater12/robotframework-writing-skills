@@ -1,0 +1,4 @@
+interface:
+  display_name: "Robot Beginner Test Guide"
+  short_description: "Guide beginners end-to-end Robot API tests"
+  default_prompt: "Guide a beginner through environment checks, OpenAPI split, requirement collection, suite generation with skills, and Robot test execution."
