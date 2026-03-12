@@ -1,15 +1,33 @@
 # robotframework-writing-skills
-Just a simple skill set often used to write robot tests
+Reusable skill set for building and running Robot Framework API tests.
 
 ## Overview
-- Written useing codex, as agent skill files. should be fine to use directly into other AI agents
-- using uv and robotframework as main packages
+- This repository contains skill packages that are meant to be copied into another AI project's config skills folder.
+- The workflow is based on `uv` and Robot Framework.
 
-## Flow
+## How to use in another AI project
+
+This repo is a source of skill content. Do not point your AI directly at this repo root and expect automatic loading.
+
+1. Open your target AI project config folder.
+2. Locate (or create) its `skills/` directory.
+3. Copy each skill folder from this repo `skills/` into that target `skills/` directory.
+4. Keep each folder name unchanged so skill metadata and references continue to work.
+
+Example copy structure:
+
+```text
+<target-ai-project-config>/skills/
+  openapi-splitter/
+  robot-env-bootstrap/
+  robot-api-test-suite/
+  robot-test-runner/
+  robot-beginner-test-guide/
+```
 
 ## Skills
 
-Use the skill instructions in each folder to drive the workflow. Each skill is documented in its `SKILL.md` file.
+Use the instructions in each copied `SKILL.md` file to drive the workflow.
 
 - `skills/openapi-splitter/`
   - Docs: `skills/openapi-splitter/SKILL.md`
@@ -41,3 +59,9 @@ Use the skill instructions in each folder to drive the workflow. Each skill is d
 2. `openapi-splitter` (split or refresh OpenAPI specs)
 3. `robot-api-test-suite` (generate/update tests)
 4. `robot-test-runner` (execute the suite)
+
+## Security notes
+
+- Treat `.env`, test logs, and run artifacts as sensitive.
+- Do not commit secrets or credential snapshots to source control.
+- Review generated logs before sharing, especially when responses may contain tokens or user data.
