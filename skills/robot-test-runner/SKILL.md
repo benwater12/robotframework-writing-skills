@@ -16,8 +16,10 @@ Run Robot Framework tests with the interpreter in `.venv`, save artifacts to a d
    - Single file run: `<target-file>.robot`
 2. Ensure project-root `.env` exists and is usable:
    - Require `.env` at project root.
-   - If `.env` is missing, ask for `BASE_URL`, `ADMIN_USERNAME`, and `ADMIN_PASSWORD`, then create `.env` in project root with those values.
-   - If `.env` exists but is missing required keys, ask for missing values and update `.env`.
+   - Resolve configuration only from `<project-root>/.env`.
+   - Require `BASE_URL`, `ADMIN_USERNAME`, and `ADMIN_PASSWORD` to be present and non-empty in the root `.env`.
+   - If `.env` is missing, stop immediately and tell the user: `Missing required root .env file: <path>` followed by `Fix .env before retrying.`
+   - If required keys are missing or empty, stop immediately and tell the user: `Missing required values in root .env (<path>): <missing keys>` followed by `Fix .env before retrying.`
    - Use `.env` values as the primary source for Robot `--variable` arguments.
 3. Resolve Python path from `.venv`:
    - Windows: `.venv\Scripts\python`
@@ -56,6 +58,7 @@ Run Robot Framework tests with the interpreter in `.venv`, save artifacts to a d
 - Quote paths that contain spaces.
 - Use the `.venv` interpreter directly instead of global `python` or `robot`.
 - Keep `.env` in project root so both generation and run flows use the same runtime configuration.
+- Do not create or patch `.env` during test execution; require the user to fix the root `.env` first.
 
 ## Examples
 

@@ -13,7 +13,7 @@ Bootstrap a clean Robot Framework API testing environment with uv, Python 3.13, 
 2. Create `pyproject.toml` using `assets/pyproject.toml` (or let the bootstrap script generate it).
 3. Create `example.env` using `assets/example.env` (or let the bootstrap script generate it).
 4. Run `scripts/bootstrap_env.py` from the project root to install uv (if missing), create `.venv`, and install dependencies.
-5. Copy `example.env` to `.env` if it does not exist and update credentials.
+5. Copy `example.env` to `.env` if it does not exist and update credentials before any downstream workflow.
 
 ## Defaults
 - `BASE_URL` defaults to `http://localhost:8000`.
@@ -21,6 +21,8 @@ Bootstrap a clean Robot Framework API testing environment with uv, Python 3.13, 
 
 ## Notes
 - `.env` must live in the project root so `robot-api-test-suite` can load it.
+- The bootstrap script validates the root `.env` before finishing.
+- If the root `.env` file is missing or required values are empty, downstream workflows must stop and tell the user to fix `.env` before retrying.
 - `.venv` is the Python environment location only.
 
 ## Resources

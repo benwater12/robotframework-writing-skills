@@ -15,6 +15,9 @@ Create Robot Framework API suites with one scenario per route file, using shared
    - create new files vs update existing files
 2. Preflight runtime prerequisites:
    - Ensure `.venv` and Robot dependencies are available.
+   - Resolve configuration only from `<project-root>/.env`.
+   - Require `BASE_URL`, `ADMIN_USERNAME`, and `ADMIN_PASSWORD` to be present and non-empty in the root `.env`.
+   - If the root `.env` file is missing or incomplete, stop and instruct the user to fix `.env` before retrying.
    - If dependencies are missing, run:
      - `uv pip install robotframework robotframework-requests faker robotframework-faker python-dotenv`
    - If `uv` is not available, stop and warn the user to run `robot-env-bootstrap` first.
@@ -51,6 +54,8 @@ Create Robot Framework API suites with one scenario per route file, using shared
 - Load test configuration from a project-root `.env` file.
 - If using `robot-env-bootstrap`, use the `.env` it creates in the project root.
 - Store values like `BASE_URL`, `ADMIN_USERNAME`, and `ADMIN_PASSWORD` in `.env` and reference them from suite resources/variables.
+- Do not read runtime configuration from nested `.env` files or alternate working directories.
+- If the root `.env` file is missing or any required value is empty, stop and tell the user to fix `.env` before retrying.
 
 ## OpenAPI Specs
 - Accept one of these spec inputs:

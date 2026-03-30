@@ -31,11 +31,14 @@ Check all of these before continuing:
 - `.venv` exists in project root
 - `uv` is available on PATH
 - `.env` exists in project root
+- `.env` contains non-empty `BASE_URL`, `ADMIN_USERNAME`, and `ADMIN_PASSWORD`
 - `openapi.json` exists (project root or `openapi-specs/openapi.json`)
 
 If any check fails:
 - Stop and report exactly what is missing.
-- Instruct user to run `robot-env-bootstrap` (for env issues) and prepare `openapi.json` (for spec issue).
+- For `.env` issues, tell the user to fix the root `.env` before retrying.
+- Instruct user to run `robot-env-bootstrap` only when the environment has not been bootstrapped yet.
+- Instruct the user to prepare `openapi.json` for the spec issue.
 
 ## Step 3: Split OpenAPI and replace old outputs
 

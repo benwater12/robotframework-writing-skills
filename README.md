@@ -60,6 +60,12 @@ Use the instructions in each copied `SKILL.md` file to drive the workflow.
 3. `robot-api-test-suite` (generate/update tests)
 4. `robot-test-runner` (execute the suite)
 
+## Root Env Contract
+
+- Runtime configuration is read only from the project-root `.env`.
+- Required keys are `BASE_URL`, `ADMIN_USERNAME`, and `ADMIN_PASSWORD`.
+- If the root `.env` file is missing, or any required value is empty, downstream workflows stop and tell the user to fix `.env` before retrying.
+
 ## Security notes
 
 - Treat `.env`, test logs, and run artifacts as sensitive.
